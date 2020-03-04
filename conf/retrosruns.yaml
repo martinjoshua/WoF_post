@@ -1,0 +1,75 @@
+#
+# this is realtime configuration for the WoF_post scripts
+#
+
+# [general]
+
+realtime:   false
+
+eventdate:  20190522
+starttimes: [1900, 1930, 2000, 2030]
+fcstlength: [360,   180,  360,  180 ] # in minutes
+
+fcstinterval: 15                      # in minutes
+
+
+# [run directories]
+
+fcstroot:   /scratch/ywang/test_runs/CONV2019/
+summarydir: /scratch/ywang/test_runs/CONV2019/summary_files
+imagedir:   /scratch/ywang/test_runs/CONV2019/images
+flagdir:    /scratch/ywang/test_runs/CONV2019/flags
+
+# [ensemble members]
+
+nen: 36
+
+# [plotting fields]
+
+fields:
+  - var_wz0to2 :
+      var_name     : WZ_0TO2
+      var_thresh   : [0.001, 0.002, 0.003, 0.004, 0.005, 0.006 ]        #vertical vorticity thresh (s^-1)
+      var_label    : 0-2 km Vertical Vort.
+      var_units    : s$^{-1}$
+  - var_uh0to2 :
+      var_name     : UH_0TO2
+      var_thresh   : [10., 20., 30., 40., 50., 60.]                     #updraft helicity thresh (0-2 km) (m^2 s^-2)
+      var_label    : 0-2 km Updraft Hel.
+      var_units    : m$^{2}$ s$^{-2}$
+  - var_uh2to5 :
+      var_name : UH_2TO5
+      var_thresh   : [20., 40., 60., 80., 100., 120.]                   #updraft helicity thresh (2-5 km) (m^2 s^-2)
+      var_label    : 2-5 km Updraft Hel.
+      var_units    : m$^{2}$ s$^{-2}$
+  - var_rain :
+      var_name : RAIN
+      var_thresh   : [0.01, 0.25, 0.5, 0.75, 1., 1.25]                  #qpf thresholds (in)
+      var_label    : Accumulated Rainfall
+      var_units    : inches
+  - var_hailmax :
+      var_name : HAIL
+      var_thresh   : [0.5, 1., 1.5, 2., 2.5, 3.]                        #graup max thresholds (kg m^-2)
+      var_label    : Maximum Hail Diameter at Sfc. (microphysics)
+      var_units    : inches
+  - var_hailcast :
+      var_name : HAILCAST
+      var_thresh   : [0.5, 1., 1.5, 2., 2.5, 3.]                        #graup max thresholds (kg m^-2)
+      var_label    : Maximum Hail Diameter at Sfc. (Hailcast)
+      var_units    : inches
+  - var_ws :
+      var_name : WS_80
+      var_thresh   : [38., 44., 50., 56., 62., 68.]                     #wind speed thresholds (m s^-1)
+      var_label    : Max 10 m Gust
+      var_units    : kts
+  - var_dz_swath :
+      var_name : DZ_MAX
+      var_thresh   : [35., 40., 45., 50., 55., 60.]                     #radar reflectivity thresholds (dBZ)
+      var_label    : Simulated Composite Reflectivity
+      var_units    : dBZ
+  - var_wup :
+     var_name : W_UP_MAX
+     var_thresh   : [4., 8., 12., 16., 20., 24.]                        #max updraft thresh (m s^-1)
+     var_label    : Max Updraft
+     var_units    : m s$^{-1}$
+

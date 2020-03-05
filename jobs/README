@@ -1,0 +1,7 @@
+Highest level scripts to run each jobs for WoF-post.
+
+The first thing to do for each script should be decoding the configuration file.
+Examples for Python3 and bash shell are provided as
+
+    python3 - readconf.py
+    bash    - readconf.sh

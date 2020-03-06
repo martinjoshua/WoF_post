@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 #######################################################################################
 #news_e_post_cbook.py - written 11/2015 by Pat Skinner
@@ -75,6 +76,7 @@
 #
 #######################################################################################
 
+from builtins import range
 import numpy as np
 
 ###### below only needed for get_local_maxima2d and gauss_kern
@@ -463,7 +465,7 @@ def wetlift_2d(t, th, p2):
       eor = e2 * rate
       iter = iter + 1
    if (iter == 20):			#set max number of iterations to reduce slowdowns (rarely hit for 2016) 
-      print( 'iter hit max: ', iter)
+      print(( 'iter hit max: ', iter))
 
    return t2 - eor + t_0
 
@@ -1952,8 +1954,8 @@ def calc_var_at_plev(var, pb, p, plev): ####Added by BCM-- 16 APR 2019
     p_bot = np.where(p_bot < 0, 0, p_bot)       #Mask out any pressures that are below ground level.
 
     nz,ny,nx = pres.shape
-    p_top_pres = np.log(pres.reshape(nz,ny*nx)[p_top.flatten(),range(ny*nx)].reshape(ny,nx))
-    p_bot_pres = np.log(pres.reshape(nz,ny*nx)[p_bot.flatten(),range(ny*nx)].reshape(ny,nx))
+    p_top_pres = np.log(pres.reshape(nz,ny*nx)[p_top.flatten(),list(range(ny*nx))].reshape(ny,nx))
+    p_bot_pres = np.log(pres.reshape(nz,ny*nx)[p_bot.flatten(),list(range(ny*nx))].reshape(ny,nx))
     dis_p_top = np.abs(p_top_pres - np.log(plev*100))
     dis_p_bot = np.abs(p_bot_pres - np.log(plev*100))
     dis_t = dis_p_top + dis_p_bot
@@ -1962,8 +1964,8 @@ def calc_var_at_plev(var, pb, p, plev): ####Added by BCM-- 16 APR 2019
 
     nzv,nyv,nxv = var.shape
     var_1d = var.reshape(nzv, nyv*nxv)
-    p_top_var = var_1d[p_top.flatten(),range(nyv*nxv)].reshape(nyv,nxv)
-    p_bot_var = var_1d[p_bot.flatten(),range(nyv*nxv)].reshape(nyv,nxv)
+    p_top_var = var_1d[p_top.flatten(),list(range(nyv*nxv))].reshape(nyv,nxv)
+    p_bot_var = var_1d[p_bot.flatten(),list(range(nyv*nxv))].reshape(nyv,nxv)
 
     var_plev_interp = p_top_var * weight_p_top + p_bot_var * weight_p_bot
     var_plev_interp[p_top == 0] = 0.000001 #Force to be pos. definite but by several inverse-orders of magnitude. 

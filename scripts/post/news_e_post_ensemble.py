@@ -1,6 +1,9 @@
+from __future__ import print_function
 ###################################################################################################
 
-from mpl_toolkits.basemap import Basemap
+from builtins import str
+from builtins import range
+#from mpl_toolkits.basemap import Basemap
 import matplotlib
 import math
 from scipy import *
@@ -11,7 +14,7 @@ import sys
 import os
 import netCDF4
 from optparse import OptionParser
-from news_e_post_cbook import *
+from ..libs.news_e_post_cbook import *
 
 ####################################### File Variables: ######################################################
 
@@ -23,9 +26,9 @@ parser.add_option("-t", dest="t", type="int", help = "Forecast timestep being pr
 (options, args) = parser.parse_args()
 
 if ((options.indir == None) or (options.outdir == None) or (options.t == None)):
-   print
+   print()
    parser.print_help()
-   print
+   print()
    sys.exit(1)
 else:
    indir = options.indir
@@ -36,7 +39,6 @@ else:
 
 ### Find member dirs ### 
 
-ne = 18
 member_dirs = []
 
 member_dirs_temp = os.listdir(indir)
@@ -45,6 +47,7 @@ for d, dir in enumerate(member_dirs_temp):
    if (dir[0:3] == 'ENS'):
       member_dirs.append(dir)
 
+ne = len(member_dirs)
 member_dirs.sort() #sorts as members [1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 2, 3, 4, 5, 6, 7, 8, 9]
 
 files = []
@@ -72,9 +75,9 @@ for f, infile in enumerate(files):
 
    try:							#open WRFOUT file
       fin = netCDF4.Dataset(infile, "r")
-      print "Opening %s \n" % infile
+      print("Opening %s \n" % infile)
    except:
-      print "%s does not exist! \n" %infile
+      print("%s does not exist! \n" %infile)
       sys.exit(1)
 
    if (f == 0):
@@ -216,7 +219,7 @@ for f, infile in enumerate(files):
 try:
    fout = netCDF4.Dataset(output_path, "w")
 except:
-   print "Could not create %s!\n" % output_path
+   print("Could not create %s!\n" % output_path)
 
 fout.createDimension('NE', ne)
 fout.createDimension('NX', nx)

@@ -51,6 +51,7 @@ futurize --nofix=division_safe -w scripts/post/news_e_post_ensemble.py
 
 ### Test a module
 ```
+mkdir out
 python -m scripts.post.news_e_post_ensemble -d ./data -o ./out/ -t 0
 ```
 A summary file should appear in the /out/ directory

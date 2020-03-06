@@ -25,7 +25,7 @@ pip install future
 ```
 
 ### Install git lfs
-Download and install git lfs using the [directions posted here](https://help.github.com/en/github/managing-large-files/installing-git-large-file-storage).
+Download and install git lfs using the [directions posted here](https://help.github.com/en/github/managing-large-files/installing-git-large-file-storage) and then executing:
 ```
 git lfs install
 ```
@@ -36,7 +36,7 @@ Clone this repository
 git clone ...
 ```
 
-### Create your anaconda environment
+### Create the anaconda environment
 ```
 cd WoF_post
 conda create --name wofs --file requirements.txt
@@ -44,6 +44,7 @@ conda activate wofs
 ```
 
 ### Upgrade individual modules to Python 3.8
+To automatically upgrade a file to Python 3.8, use the future package:
 ```
 futurize --nofix=division_safe -w scripts/post/news_e_post_ensemble.py
 ```

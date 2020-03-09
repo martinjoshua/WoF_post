@@ -39,7 +39,7 @@ git clone ...
 ### Create the anaconda environment
 ```
 cd WoF_post
-conda create --name wofs --file requirements.txt
+conda env create -f environment.yml
 conda activate wofs
 ```
 
